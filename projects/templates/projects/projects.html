@@ -5,10 +5,10 @@
 
 <ul>
     {% for project in projects %}
-        <li>
-            <h3>Title: <a href="{% url 'project' project.id %}">{{project.title}}</a></h3>
-            <p>Description: {{project.description}}</p>
-        </li>
+    <li>
+        <h3>Title: <a href="{% url 'project' project.id %}">{{project.title}}</a></h3>
+        <p>Description: {{project.description}}</p>
+    </li>
     {% endfor %}
 </ul>
 {% endblock content %}
