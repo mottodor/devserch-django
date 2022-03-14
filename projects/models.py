@@ -1,9 +1,5 @@
-from statistics import mode
-from tkinter import CASCADE
 from django.db import models
 import uuid
-
-from projects.views import project
 
 
 class Project(models.Model):
