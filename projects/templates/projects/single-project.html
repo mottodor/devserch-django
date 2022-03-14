@@ -1,0 +1,10 @@
+{% extends "main.html" %}
+{% block content %}
+{% if title %}
+    <h1>Project name: {{title}}</h1>
+    <p>Description: {{description}}</p>
+{% else %}
+    <h1>Not found project, check your input number</h1>
+{% endif %}
+
+{% endblock content %}
