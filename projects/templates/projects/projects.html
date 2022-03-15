@@ -1,14 +1,16 @@
 {% extends "main.html" %}
 {% block content %}
-
-<h1>You are one {{page}} page now.</h1>
-
-<ul>
-    {% for project in projects %}
-    <li>
-        <h3>Title: <a href="{% url 'project' project.id %}">{{project.title}}</a></h3>
-        <p>Description: {{project.description}}</p>
-    </li>
-    {% endfor %}
-</ul>
+    <h1>You are one {{ page }} page now.</h1>
+    <ul>
+        {% for project in projects %}
+            <li>
+                <h3>
+                    Title: <a href="{% url 'project' project.id %}">{{ project.title }}</a>
+                </h3>
+                <p>
+                    Description: {{ project.description }}
+                </p>
+            </li>
+        {% endfor %}
+    </ul>
 {% endblock content %}
