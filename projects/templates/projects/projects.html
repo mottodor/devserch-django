@@ -10,6 +10,11 @@
                 <p>
                     Description: {{ project.description }}
                 </p>
+                <p>
+                    {% for tag in project.tags.all %}<span>{{ tag }}</span>{% endfor %}
+                </p>
+                <a href="{% url 'update-project' project.id %}">Edit</a>
+                <a href="{% url 'delete-project' project.id %}">Delete</a>
             </li>
         {% endfor %}
     </ul>
