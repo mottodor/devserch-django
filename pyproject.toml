@@ -8,6 +8,7 @@ authors = ["mottodor"]
 python = "^3.10"
 Django = "^4.0.3"
 Pillow = "^9.0.1"
+whitenoise = "^6.0.0"
 
 [tool.poetry.dev-dependencies]
 autopep8 = "^1.6.0"
