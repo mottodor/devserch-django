@@ -1,5 +1,11 @@
 {% extends "main.html" %}
+{% load static %}
 {% block content %}
+    <img style="max-width: 500px;
+                display:block;
+                margin: 10px 20px;"
+         src="{{ project.feature_image.url }}"
+         alt=""/>
     <h1>Project name: {{ project.title }}</h1>
     <p>
         Description: {{ project.description }}
