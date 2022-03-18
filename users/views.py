@@ -1,5 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib.auth import login, authenticate, logout
+from django.contrib import messages
+from django.contrib.auth.models import User
 from .models import Profile
+from .forms import CunstomUserCreationForm
 
 
 def profiles(request):
@@ -15,3 +19,53 @@ def userProfile(request, pk):
     context = {'profile': profile, 'topSkills': topSkills,
                'otherSkills': otherSkills}
     return render(request, 'users/user-profile.html', context)
+
+
+def loginUser(request):
+    page = 'login'
+    context = {'page': page}
+    if request.user.is_authenticated:
+        return redirect('profiles')
+
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+
+        try:
+            user = User.objects.get(username=username)
+        except:
+            pass
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            return redirect('profiles')
+        else:
+            messages.error(request, 'User name or password is not correct')
+    return render(request, 'users/login-register.html', context)
+
+
+def logoutUser(request):
+    logout(request)
+    messages.success(request, 'User logout')
+    return redirect('login')
+
+
+def registerUser(request):
+    page = 'register'
+    form = CunstomUserCreationForm()
+
+    if request.method == 'POST':
+        form = CunstomUserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.username = user.username.lower()
+            user.save()
+            messages.success(request, 'Account was created')
+            login(request, user)
+            return redirect('profiles')
+        else:
+            messages.error(request, 'An error has occured during register')
+
+    context = {'page': page, 'form': form}
+    return render(request, 'users/login-register.html', context)
