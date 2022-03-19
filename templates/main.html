@@ -19,8 +19,19 @@
     </head>
     <body>
         {% include "header.html" %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert--{{ message.tags }}">
+                    <p class="alert__message">
+                        {{ message }}
+                    </p>
+                    <button class="alert__close">x</button>
+                </div>
+            {% endfor %}
+        {% endif %}
         {% block content %}
         {% endblock content %}
         {% include "footer.html" %}
+        <script src="{% static 'uikit/app.js' %}"></script>
     </body>
 </html>
