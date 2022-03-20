@@ -1,14 +1,18 @@
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+
 from .models import Project
 from .forms import ProjectForm
-from .utils import searchProject
+from .utils import searchProject, paginateProject
 
 
 def projects(request):
     projects, search_query = searchProject(request)
-    context = {'projects': projects, 'search_query': search_query}
+    results = 6
+    projects, custom_range = paginateProject(request, projects, results)
+    context = {'projects': projects,
+               'search_query': search_query, 'custom_range': custom_range}
     return render(request, 'projects/projects.html', context)
 
 
@@ -29,7 +33,7 @@ def createProject(request):
             project.owner = profile
             project.save()
             messages.success(request, 'Project was added successfuly')
-            return redirect('projects')
+            return redirect('account')
     context = {'form': form}
     return render(request, 'projects/project_form.html', context)
 

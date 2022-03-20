@@ -3,14 +3,18 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth.models import User
+from django.core.paginator import Paginator
 from .models import Profile
 from .forms import CunstomUserCreationForm, ProfileForm, SkillForm
-from .utils import searchProfile
+from .utils import searchProfile, paginateProfile
 
 
 def profiles(request):
     profiles, search_query = searchProfile(request)
-    context = {'profiles': profiles, 'search_query': search_query}
+    results = 6
+    profiles, custom_range = paginateProfile(request, profiles, results)
+    context = {'profiles': profiles, 'search_query': search_query,
+               'custom_range': custom_range}
     return render(request, 'users/profiles.html', context)
 
 
