@@ -3,7 +3,7 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth.models import User
-from .models import Profile, Skill
+from .models import Profile
 from .forms import CunstomUserCreationForm, ProfileForm, SkillForm
 
 
@@ -48,7 +48,7 @@ def loginUser(request):
 
 def logoutUser(request):
     logout(request)
-    messages.info(request, 'User logout')
+    messages.success(request, 'You have successfully logged out')
     return redirect('login')
 
 
@@ -76,7 +76,6 @@ def registerUser(request):
 def userAccount(request):
     profile = request.user.profile
     skills = profile.skill_set.all()
-
     context = {'profile': profile, 'skills': skills}
     return render(request, 'users/user-account.html', context)
 
@@ -85,13 +84,12 @@ def userAccount(request):
 def editAccount(request):
     profile = request.user.profile
     form = ProfileForm(instance=profile)
-
     if request.method == 'POST':
         form = ProfileForm(request.POST, request.FILES, instance=profile)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Account successfuly edited')
             return redirect('account')
-
     context = {'form': form}
     return render(request, 'users/profile_form.html', context)
 
@@ -121,6 +119,7 @@ def updateSkill(request, pk):
         form = SkillForm(request.POST, instance=skill)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Skill was edited successfuly')
             return redirect('account')
     context = {'form': form, 'skill': skill}
     return render(request, 'users/skill_form.html', context)
@@ -132,6 +131,7 @@ def deleteSkill(request, pk):
     skill = profile.skill_set.get(id=pk)
     if request.method == 'POST':
         skill.delete()
+        messages.success(request, 'Skill was deleted successfuly')
         return redirect('account')
     context = {'object': skill}
     return render(request, 'delete_confirm.html', context)

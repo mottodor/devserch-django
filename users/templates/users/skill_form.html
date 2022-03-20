@@ -3,9 +3,7 @@
     <main class="formPage my-xl">
         <div class="content-box">
             <div class="formWrapper">
-                <a class="backButton"
-                   href=""
-                   onclick="window.history.back(); return false;"><i class="im im-angle-left"></i></a>
+                <a class="backButton" href="{{ request.GET.next }}"><i class="im im-angle-left"></i></a>
                 <br />
                 <form method="POST">
                     {% csrf_token %}

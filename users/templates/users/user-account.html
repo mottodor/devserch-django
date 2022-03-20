@@ -7,7 +7,7 @@
                     <div class="card text-center">
                         <div class="card__body dev">
                             <a class="tag tag--pill tag--main settings__btn"
-                               href="{% url 'edit-account' %}"><i class="im im-edit"></i> Edit</a>
+                               href="{% url 'edit-account' %}?next={% url 'account' %}"><i class="im im-edit"></i> Edit</a>
                             <img class="avatar avatar--xl dev__avatar"
                                  src="{{ profile.profile_image.url }}"
                                  alt="profile avatar"/>
@@ -58,7 +58,7 @@
                     <div class="settings">
                         <h3 class="settings__title">Skills</h3>
                         <a class="tag tag--pill tag--sub settings__btn tag--lg"
-                           href="{% url 'create-skill' %}"><i class="im im-plus"></i> Add Skill</a>
+                           href="{% url 'create-skill' %}?next={% url 'account' %}"><i class="im im-plus"></i> Add Skill</a>
                     </div>
                     <table class="settings__table">
                         {% for skill in skills %}
@@ -71,7 +71,7 @@
                                 </td>
                                 <td class="settings__tableActions">
                                     <a class="tag tag--pill tag--main settings__btn"
-                                       href="{% url 'update-skill' skill.id %}"><i class="im im-edit"></i>Edit</a>
+                                       href="{% url 'update-skill' skill.id %}?next={% url 'account' %}"><i class="im im-edit"></i>Edit</a>
                                     <a class="tag tag--pill tag--main settings__btn"
                                        href="{% url 'delete-skill' skill.id %}?next={% url 'account' %}"><i class="im im-x-mark-circle-o"></i>
                                 Delete</a>
@@ -82,7 +82,7 @@
                 <div class="settings">
                     <h3 class="settings__title">Projects</h3>
                     <a class="tag tag--pill tag--sub settings__btn tag--lg"
-                       href="{% url 'create-project' %}"><i class="im im-plus"></i> Add Project</a>
+                       href="{% url 'create-project' %}?next={% url 'account' %}"><i class="im im-plus"></i> Add Project</a>
                 </div>
                 <table class="settings__table">
                     {% for project in profile.project_set.all %}
@@ -100,7 +100,7 @@
                             </td>
                             <td class="settings__tableActions">
                                 <a class="tag tag--pill tag--main settings__btn"
-                                   href="{% url 'update-project' project.id %}"><i class="im im-edit"></i> Edit</a>
+                                   href="{% url 'update-project' project.id %}?next={% url 'account' %}"><i class="im im-edit"></i> Edit</a>
                                 <a class="tag tag--pill tag--main settings__btn"
                                    href="{% url 'delete-project' project.id %}?next={% url 'account' %}"><i class="im im-x-mark-circle-o"></i>
                             Delete</a>
