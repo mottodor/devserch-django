@@ -9,6 +9,9 @@ class CunstomUserCreationForm(UserCreationForm):
         model = User
         fields = ['first_name', 'username',
                   'email', 'password1', 'password2']
+        labels = {
+            'first_name': 'Name'
+        }
 
     def __init__(self, *args, **kwargs):
         super(CunstomUserCreationForm, self).__init__(*args, **kwargs)

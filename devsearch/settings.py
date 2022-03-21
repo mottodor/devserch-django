@@ -119,18 +119,28 @@ USE_I18N = True
 USE_TZ = True
 
 
+# Email sending settings
+EMAIL_BACKAND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_SSL = True
+EMAIL_HOST = 'smtp.mail.ru'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = 'kantemir-332@mail.ru'
+EMAIL_HOST_PASSWORD = 'Z7SscFqmS4eW1nQuxBrr'
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = '/static/'
-MEDIA_URL = ''
-
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
-
-MEDIA_ROOT = os.path.join(BASE_DIR, 'static', 'images')
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+
+# Media files (upload media files)
+MEDIA_URL = ''
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static', 'images')
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
