@@ -17,11 +17,27 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.auth import views as auth_views
+from .views import CustomPasswordResetView, CustomPasswordResetDoneView, CustomPasswordResetConfirmView, CustomPasswordResetCompleteView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('projects/', include('projects.urls')),
     path('', include('users.urls')),
+
+    path(
+        'password_reset/',
+        CustomPasswordResetView.as_view(), name='password_reset'),
+    path(
+        'password_reset_done/',
+        CustomPasswordResetDoneView.as_view(), name='password_reset_done'),
+    path(
+        'sreset/<uidb64>/<token>/',
+        CustomPasswordResetConfirmView.as_view(), name='password_reset_confirm'),
+    path(
+        'password_reset_complete/',
+        CustomPasswordResetCompleteView.as_view(), name='password_reset_complete'),
+
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

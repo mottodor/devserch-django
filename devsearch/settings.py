@@ -126,6 +126,7 @@ EMAIL_HOST = 'smtp.mail.ru'
 EMAIL_PORT = 465
 EMAIL_HOST_USER = 'kantemir-332@mail.ru'
 EMAIL_HOST_PASSWORD = 'Z7SscFqmS4eW1nQuxBrr'
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
