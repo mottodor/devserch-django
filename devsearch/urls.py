@@ -22,8 +22,9 @@ from .views import CustomPasswordResetView, CustomPasswordResetDoneView, CustomP
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('projects/', include('projects.urls')),
     path('', include('users.urls')),
+    path('projects/', include('projects.urls')),
+    path('api/', include('api.urls')),
 
     path(
         'password_reset/',
