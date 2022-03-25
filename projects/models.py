@@ -5,7 +5,7 @@ import uuid
 
 class Project(models.Model):
     owner = models.ForeignKey(
-        Profile, null=True, blank=True, on_delete=models.SET_NULL)
+        Profile, null=True, blank=True, on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
     description = models.TextField(null=True, blank=True)
     feature_image = models.ImageField(
@@ -25,6 +25,14 @@ class Project(models.Model):
     class Meta:
         # Reverse ordering with '-'
         ordering = ['-vote_ratio', '-vote_total', 'title']
+
+    @property
+    def imageURL(self):
+        try:
+            url = self.feature_image.url
+        except:
+            url = ''
+        return url
 
     @property
     def gerVoteCount(self):
