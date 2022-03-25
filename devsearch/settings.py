@@ -137,10 +137,10 @@ CORS_ALLOW_ALL_ORIGINS = True
 # Email sending settings
 EMAIL_BACKAND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_SSL = True
-EMAIL_HOST = 'smtp.mail.ru'
+EMAIL_HOST = 'smtp.example.ru'
 EMAIL_PORT = 465
-EMAIL_HOST_USER = 'kantemir-332@mail.ru'
-EMAIL_HOST_PASSWORD = 'Z7SscFqmS4eW1nQuxBrr'
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 # Static files (CSS, JavaScript, Images)
