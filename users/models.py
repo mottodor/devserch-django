@@ -23,6 +23,10 @@ class Profile(models.Model):
     id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True,
                           editable=False)
 
+    class Meta:
+        # Reverse ordering with '-'
+        ordering = ['-created']
+
     def __str__(self) -> str:
         return str(self.username)
 
